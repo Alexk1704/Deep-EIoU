@@ -1,0 +1,27 @@
+# Packaging of this fork: installs the Deep-EIoU tracker as `deep_eiou` (from Deep-EIoU/tracker/) and its
+# tools as `deep_eiou.tools` (for the offline interpolation, tools/sport_interpolation.py), for use as a library:
+#     from deep_eiou.Deep_EIoU import Deep_EIoU
+#     from deep_eiou.tools import sport_interpolation
+# Only those two directories are installed; the yolox / torchreid copies under Deep-EIoU/ are not.
+# Upstream declares no license.
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deep-eiou"
+version = "0.1.0"
+description = "Deep-EIoU tracker packaged as a library (fork of hsiangwei0903/Deep-EIoU)"
+readme = "Readme.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "scipy",
+    "lap",
+    "cython_bbox",
+]
+
+[tool.setuptools]
+package-dir = { "deep_eiou" = "Deep-EIoU/tracker", "deep_eiou.tools" = "Deep-EIoU/tools" }
+packages = ["deep_eiou", "deep_eiou.tools"]
+include-package-data = false

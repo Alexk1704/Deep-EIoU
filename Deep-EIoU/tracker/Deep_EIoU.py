@@ -1,9 +1,9 @@
 import numpy as np
 from collections import deque
 
-from tracker import matching
-from tracker.basetrack import BaseTrack, TrackState
-from tracker.kalman_filter import KalmanFilter
+from . import matching
+from .basetrack import BaseTrack, TrackState
+from .kalman_filter import KalmanFilter
 
 from collections import defaultdict
 
@@ -14,7 +14,7 @@ class STrack(BaseTrack):
     def __init__(self, tlwh, score, feat=None, feat_history=30):
 
         # wait activate
-        self._tlwh = np.asarray(tlwh, dtype=np.float)
+        self._tlwh = np.asarray(tlwh, dtype=np.float64)
         self.kalman_filter = None
         self.mean, self.covariance = None, None
         self.is_activated = False
